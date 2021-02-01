@@ -20,6 +20,10 @@ public class ProductController{
         model.addAttribute("products",productRepository.findAll());
         return "products";
     }
+
+
+
+
     @GetMapping("/suppliers")
     public String suppliers(){
         return "suppliers";
