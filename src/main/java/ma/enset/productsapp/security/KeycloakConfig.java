@@ -1,6 +1,8 @@
 package ma.enset.productsapp.security;
 
 import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
+import org.keycloak.adapters.springsecurity.client.KeycloakClientRequestFactory;
+import org.keycloak.adapters.springsecurity.client.KeycloakRestTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,4 +19,10 @@ public class KeycloakConfig {
 
     // or we could just ignore this class and put the File Json configuration in resource folder
 
+
+ // this for Rest Client provide by keycloak
+    @Bean
+    KeycloakRestTemplate keycloakRestTemplate(KeycloakClientRequestFactory requestFactory){
+         return   new KeycloakRestTemplate(requestFactory);
+    }
 }
