@@ -9,6 +9,7 @@ import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.hateoas.PagedModel;
@@ -41,6 +42,11 @@ public class ProductController{
          PagedModel<Suppliers> pagedModelSuppliers = keycloakRestTemplate.getForObject("http://localhost:8083/suppliers", PagedModel.class);
          model.addAttribute("suppliers",pagedModelSuppliers);
         return "suppliers";
+    }
+     @ExceptionHandler(Exception.class)
+    public  String exceptionHandler( Exception e , Model model){
+            model.addAttribute("errorMessage" ,"Access Denied" );
+         return "errors";
     }
 
 
